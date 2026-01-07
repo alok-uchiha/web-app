@@ -1,0 +1,41 @@
+body {
+    background-color:black;
+    color: white
+}
+
+.hero-btn {
+  background-color: red;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  background-color: black;
+  color: red;
+  border: 2px solid red;
+  box-shadow: 0 0 10px red;
+}
+
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 300px;px ;    
+    padding: 6px 12px;
+    border: 1px solid #463333;
+    border-radius: 25px;
+    flex: 1;
+    outline: none;
+    background-color: #111;
+    color: white;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px red;
+  }

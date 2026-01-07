@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aroku</title>
+     <link rel="icon" type="image/jpg" href="{{ url_for('static', filename='images/logo.jpg') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  </head>
+  <body >
+    
+    <nav class="navbar" style ="background-color: rgb(173, 165, 165); color: white;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" width="35" height="35" class="d-inline-block align-text-top">
+      <b>Aroku</b>
+    </a>
+
+    <form class="d-flex search-bar">
+      <input type="text" placeholder="search your verse..." class="search-input">
+      <button type="submit" class="search-btn">
+          <img src="{{ url_for('static', filename='images/search-icon.png') }}" alt="Search" width="20" height="20">
+      </button>
+
+    </form>
+    <div>
+      <button class= "hero-btn me-2">Home</button>
+      <button class= "hero-btn me-2">Projects</button>
+      <button class= "hero-btn me-2">About</button>
+      <button class= "hero-btn me-2">Contact</button>
+    </div>
+  </div>
+</nav>
+    <img src="{{ url_for('static', filename='images/banner.jpg') }}" 
+    alt="hero banner"
+    style= "width: 100vw; height: 15vh;" >
+
+
+    <h1>This is my frist website</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
