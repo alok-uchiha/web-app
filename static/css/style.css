@@ -1,6 +1,49 @@
-body {
-    background-color:black;
-    color: white
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #1b5e55;
+  color:white;
+  transition: background-color 0.8s ease;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* left, center, right placement */
+  background-color: rgb(173, 165, 165);
+  color: white;
+  padding: 10px 30px;
+  border-radius: 8px;
+}
+
+.navbar-left a {
+  display: flex;           /* aligns logo + text horizontally */
+  align-items: center;     /* centers them vertically */
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  gap: 8px;                /* small space between logo and text */
+}
+
+.navbar-left a {
+  text-decoration: none;   /* removes underline */
+  color: white;            /* changes blue link to white */
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* centers it horizontally */
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .hero-btn {
@@ -13,6 +56,34 @@ body {
   transition: all 0.3s ease;
 }
 
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: black;
+  border: 2px solid rgb(4, 79, 1);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 3px 8px;
+  width: 250px;
+  transition: 0.3s ease;
+} 
+
+.search-input {
+  border: none;
+  outline: none;
+  padding: 5px 8px;
+  font-size: 14px;
+  color: white;
+  background-color: black;
+  width: 160px;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .hero-btn:hover {
   background-color: black;
   color: red;
@@ -20,22 +91,147 @@ body {
   box-shadow: 0 0 10px red;
 }
 
-
-.search-bar {
-    display: flex;
-    align-items: center;
+.zoro-image {
+  width: 250px;
+  height: auto;
+  margin-left: 150px
 }
 
-.search-input {
-    width: 300px;  
-    padding: 6px 12px;
-    border: 1px solid #463333;
-    border-radius: 25px;
-    flex: 1;
-    outline: none;
-    background-color: #111;
-    color: white;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 5px red;
-  }
+section {
+  min-height: 90vh;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.5s ease;
+}
+
+.zoro-section {
+  background-color: #1b5e55;
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.zoro-container {
+  display: flex;
+  align-items: center;
+  gap:40px;
+  max-width: 2000px;
+}
+
+
+.zoro-img {
+  width: 250px;
+  height: auto;
+}
+
+.zoro-text {
+  color: white;
+  max-width: 500px;
+}
+
+.zoro-text h1 {
+  color: rgb(137, 177, 109);
+  font-size: 2rem;
+}
+
+.zoro-btn {
+  background-color: rgb(136, 188, 177);
+  color:black;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 25px;
+  transition: all 0.01s ease;
+}
+
+.zoro-btn:hover {
+  background-color: rgb(3, 73, 48);
+  color: balck;
+  border: 2px solid rgb(3, 62, 43);
+  box-shadow: 0 0 10px rgb(8, 34, 19);
+}
+
+.sanji-section {
+  background-color: #8a9309
+}
+
+.sanji-container {
+  display: flex;
+  align-items: center;
+  gap:40px;
+  max-width: 2000px;
+}
+
+.sanji-img {
+  width: 250px;
+  height: auto;
+}
+
+.sanji-text {
+  color: white;
+  max-width: 500px;
+}
+
+.sanji-btn {
+  margin-top: 20px;
+  background-color: #c1c107;
+  color:black;
+  border: none;
+  border-radius: 25px;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+}
+
+.sanji-btn:hover {
+  background-color: #808203;
+  color: black;
+  border: 2px solid #5a5c05;
+  box-shadow: 0 0 10px #0c0c02;
+}
+
+section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sanji-container {
+  display: flex;
+  flex-direction: row-reverse; /* 👈 puts image on right */
+  align-items: center;
+  justify-content: center;
+  gap: 40px; /* space between image and text */
+}
+
+.site-footer {
+  background-color: #111; /* deep black for contrast */
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  border-top: 2px solid rgb(4, 159, 173); /* spider-man red accent */
+  margin-top: 0px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: rgb(56, 123, 159);
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}

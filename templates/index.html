@@ -1,44 +1,82 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Aroku</title>
-     <link rel="icon" type="image/jpg" href="{{ url_for('static', filename='images/logo.jpg') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-  </head>
-  <body >
-    
-    <nav class="navbar" style ="background-color: rgb(173, 165, 165); color: white;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" width="35" height="35" class="d-inline-block align-text-top">
-      <b>Aroku</b>
-    </a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aroku</title>
+  <link rel="icon" type="image/jpg" href="{{ url_for('static', filename='images/logo.jpg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <form class="d-flex search-bar">
-      <input type="text" placeholder="search your verse..." class="search-input">
-      <button type="submit" class="search-btn">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" width="35" height="35">
+        <b>Aroku</b>
+      </a>
+    </div>
+
+    <div class="navbar-center">
+      <form class="search-bar">
+        <input type="text" placeholder="Search your verse..." class="search-input">
+        <button type="submit" class="search-btn">
           <img src="{{ url_for('static', filename='images/search-icon.png') }}" alt="Search" width="20" height="20">
-      </button>
+        </button>
+      </form>
+    </div>
 
-    </form>
-    <div>
-      <button class= "hero-btn me-2">Home</button>
-      <button class= "hero-btn me-2">Projects</button>
-      <button class= "hero-btn me-2">About</button>
-      <button class= "hero-btn me-2">Contact</button>
+    <div class="navbar-right">
+      <button class="hero-btn me-2">Home</button>
+      <button class="hero-btn me-2">Projects</button>
+      <button class="hero-btn me-2">About</button>
+      <button class="hero-btn me-2">Contact</button>
+    </div>
+  </nav>
+
+
+  <img src="{{ url_for('static', filename='images/banner.jpg') }}" alt="hero banner"
+    style="width: 100vw; height: 25vh;">
+
+<section class="zoro-section">
+  <div class="zoro-container">
+      <img src="{{ url_for('static', filename='images/zoro.png') }}" alt="Zoro" class="zoro-img">
+      <div class="zoro-text">
+        <h1>Roronoa Zoro</h1>
+        <p>The swordsman who aims to be the best in the world.  
+        His determination cuts deeper than any blade.</p>
+        <button class="zoro-btn">Know More</button>
+      </div>
+  </div>
+</section>
+<section class="sanji-section">
+  <div class="sanji-container">
+    <img src="{{ url_for('static', filename='images/sanji.png') }}" alt="sanji-img" class="sanji-img">
+    <div class="sanji-text">
+       <h1>Vinsmoke Sanji</h1>
+      <p>The cook of the Straw Hats — a gentleman with fiery kicks and an even hotter temper.</p>
+      <button class="sanji-btn">know more</button>
     </div>
   </div>
-</nav>
-    <img src="{{ url_for('static', filename='images/banner.jpg') }}" 
-    alt="hero banner"
-    style= "width: 100vw; height: 15vh;" >
+</section>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>© 2026 Aroku | Sabka Sath Sabka Vikash🤍</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
 
 
-    <h1>This is my frist website</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  </body>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
 </html>
