@@ -9,7 +9,7 @@ import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/project_01'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:DZxtKNDeRKihjxHfQaRwGaobyVDTGAoP@centerbeam.proxy.rlwy.net:31753/railway'
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
