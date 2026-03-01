@@ -1,71 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Flask App{% endblock %}</title>
-    <style>
-        
-        body {
-            font-family: Arial;
-            margin: 20px;
-            background: #fafafa;
-        }
-
-        header,
-        footer {
-            background: #eee;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        a {
-            margin: 0 10px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #ccc;
-            margin: 10px 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Alok Singh{% endblock %}</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_css %}{% endblock %}
 </head>
-
 <body>
-    <header>
-        <a href="/">Home</a>
-        <a href="/feedback">Feedback</a>
-        <a href="/register">register</a>
+  <!-- Creative Navbar (only one!) -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- Logo with cool animation -->
+      <a href="/" class="navbar-logo">
+        <span class="logo-text">Aroku</span>
+        <span class="logo-dot">.</span>
+        <div class="logo-glitch"></div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="navbar-menu">
+        <div class="menu-links">
+          <a href="/projects" class="menu-link">
+            <span class="link-text">Projects</span>
+          </a>
+          <a href="/about" class="menu-link">
+            <span class="link-text">About</span>
+           
+          </a>
+          <a href="/blog" class="menu-link">
+            <span class="link-text">Blog</span>
+           
+          </a>
+        </div>
+
+        <div class="navbar-actions">
+          {% if current_user.is_authenticated %}
+            <a href="/feedback" class="action-link">
+              <i class="fas fa-comment"></i>
+              <span>Feedback</span>
+            </a>
+            
+            <!-- Cool user dropdown -->
+            <div class="user-menu">
+              <button class="user-trigger">
+                <div class="user-avatar">
+                  <span>{{ current_user.username[:2]|upper }}</span>
+                  <div class="avatar-glow"></div>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              
+              <div class="user-dropdown">
+                <div class="dropdown-header">
+                  <div class="dropdown-avatar">
+                    {{ current_user.username[:2]|upper }}
+                  </div>
+                  <div class="dropdown-info">
+                    <span class="dropdown-name">{{ current_user.username }}</span>
+                    <span class="dropdown-email">{{ current_user.email }}</span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="/profile" class="dropdown-item">
+                  <i class="fas fa-user"></i>
+                  <span>Profile</span>
+                </a>
+                <a href="/feedback" class="dropdown-item">
+                  <i class="fas fa-comment"></i>
+                  <span>My Feedback</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="/logout" class="dropdown-item logout-item">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>Logout</span>
+                </a>
+              </div>
+            </div>
+          {% else %}
+            <a href="/login" class="action-link login-link">
+              <i class="fas fa-sign-in-alt"></i>
+              <span>Login</span>
+            </a>
+            
+            <!-- Cool creative join button -->
+            <a href="/register" class="creative-btn">
+              <span class="btn-text">Join Now</span>
+              <span class="btn-icon">
+                <i class="fas fa-arrow-right"></i>
+                <i class="fas fa-arrow-right"></i>
+              </span>
+              <span class="btn-glow"></span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Ultra Creative Mobile Button -->
+      <button class="hamburger-btn" id="hamburgerBtn">
+        <div class="hamburger-inner">
+          <span class="line line1"></span>
+          <span class="line line2"></span>
+          <span class="line line3"></span>
+        </div>
+        <div class="hamburger-glow"></div>
+      </button>
+    </div>
+
+    <!-- Creative Mobile Menu (only one!) -->
+    <div class="mobile-panel" id="mobilePanel">
+      <div class="mobile-panel-bg">
+        <div class="bg-shape shape1"></div>
+        <div class="bg-shape shape2"></div>
+      </div>
+      
+      <div class="mobile-panel-content">
         {% if current_user.is_authenticated %}
-          <a href="/logout">Logout</a>
-        {% else %}
-          <a href="/login">login</a>
+          <div class="mobile-user-card">
+            <div class="mobile-user-avatar">{{ current_user.username[:2]|upper }}</div>
+            <div class="mobile-user-details">
+              <span class="mobile-user-name">{{ current_user.username }}</span>
+              <span class="mobile-user-email">{{ current_user.email }}</span>
+            </div>
+          </div>
         {% endif %}
 
-    </header>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul>
-      {% for msg in messages %}
-        <li style="color:red;">{{ msg }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-    <hr>
-    {% block content %}
-    {% endblock %}
-<hr>
-    <footer>
-        <p>Flask Practice — Template Inheritance © 2026</p>
-    </footer>
-</body>
+        <div class="mobile-nav-links">
+          <a href="/projects" class="mobile-nav-link">
+            <span class="link-icon"><i class="fas fa-code"></i></span>
+            <span class="link-label">Projects</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a href="/about" class="mobile-nav-link">
+            <span class="link-icon"><i class="fas fa-user"></i></span>
+            <span class="link-label">About</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a href="/blog" class="mobile-nav-link">
+            <span class="link-icon"><i class="fas fa-pen"></i></span>
+            <span class="link-label">Blog</span>
+            <span class="link-arrow">→</span>
+          </a>
+          
+          {% if current_user.is_authenticated %}
+            <a href="/feedback" class="mobile-nav-link">
+              <span class="link-icon"><i class="fas fa-comment"></i></span>
+              <span class="link-label">Feedback</span>
+              <span class="link-arrow">→</span>
+            </a>
+          {% endif %}
+        </div>
 
+        <div class="mobile-footer">
+          {% if current_user.is_authenticated %}
+            <a href="/logout" class="mobile-logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          {% else %}
+            <div class="mobile-auth">
+              <a href="/login" class="mobile-login">Login</a>
+              <a href="/register" class="mobile-register">Join Now</a>
+            </div>
+          {% endif %}
+          
+          <div class="mobile-social">
+    <a href="https://github.com/alok-uchiha" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/alok-singh-b78a55385/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+    <a href="https://instagram.com/_aroku" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+    <a href="mailto:alok21909@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-container">
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }}">
+            {{ message }}
+            <button class="flash-close">&times;</button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- Main Content -->
+  <main class="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-info">
+            <p>© 2026 Alok Singh</p>
+            <p>Built with Python & Flask</p>
+        </div>
+        <div class="footer-social">
+            <a href="https://github.com/alok-uchiha" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/alok-singh-b78a55385/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="https://instagram.com/_aroku" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:alok21909@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+</footer>
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
 </html>

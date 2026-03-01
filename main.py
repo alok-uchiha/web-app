@@ -65,7 +65,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        flash("account created successfully for {form.username.data}, you can login now!", "success")
+        flash(f"account created successfully for {form.username.data}, you can login now!", "success")
         return redirect(url_for('login'))
 
     return render_template("register.html", form=form)
@@ -118,6 +118,26 @@ def add_feedback():
 def feedback():
     user_feedback= Feedback.query.filter_by(user_id=current_user.id).all()
     return render_template("feedback.html", name= current_user.username, fb=user_feedback)
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/projects")
+def projects():
+    return render_template("projects.html")
+
+@app.route("/services")
+def services():
+    return "Services page is under construction"
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
 
 
 @app.route("/api/feedback", methods= ["GET"])

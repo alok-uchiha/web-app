@@ -1,10 +1,345 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+
+{% block title %}Alok Singh - Backend Developer{% endblock %}
 
 {% block content %}
-{% if current_user.is_authenticated %}
-    Wellcome to home page! {{current_user.username}}
-{% else %}
-    login frist
-{% endif %}
+<!-- Hero Section (keep this) -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <span class="hero-tag-line"></span>
+                    <span class="hero-tag-text">BACKEND DEVELOPER</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Alok <span class="hero-name">Singh</span>
+                </h1>
+                
+                <p class="hero-description">
+                    I build backend systems, APIs, and tools that actually work. 
+                    Currently in high school, shipping code like it's my job.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">2+</span>
+                        <span class="stat-label">Years</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Coffee</span>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="{{ url_for('projects') }}" class="btn-primary">
+                        <span>View Work</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn-outline">
+                        <i class="fas fa-comment"></i>
+                        <span>Contact</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-code">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="window-title">~/alok/latest.py</span>
+                    </div>
+                    <div class="window-content">
+                        <pre><span class="keyword">class</span> <span class="class-name">Alok</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self):
+        self.age = <span class="number">17</span>
+        self.stack = [<span class="string">"Python"</span>, <span class="string">"Flask"</span>, <span class="string">"FastAPI"</span>]
+        self.building = <span class="string">"cool stuff"</span>
+    
+    <span class="keyword">def</span> <span class="function">hire_me</span>(self):
+        <span class="keyword">return</span> <span class="string">"Let's build something 🔥"</span></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="featured-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">🔥 FEATURED WORK</span>
+            <h2 class="section-title">Things I've Built</h2>
+            <p class="section-description">Real projects I actually made</p>
+        </div>
+
+        <div class="featured-grid">
+            <!-- Project 1 - Auth System (YOURS) -->
+            <div class="featured-card">
+                <div class="featured-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Flask Auth System</h3>
+                <p>Complete authentication with login, register, and feedback management. Uses Flask, SQLAlchemy, and WTForms.</p>
+                <div class="featured-tech">
+                    <span>Python</span>
+                    <span>Flask</span>
+                    <span>SQL</span>
+                    <span>WTForms</span>
+                </div>
+                <a href="{{ url_for('projects') }}" class="featured-link">Check it out →</a>
+            </div>
+
+            <!-- Project 2 - Feedback System (YOURS) -->
+            <div class="featured-card">
+                <div class="featured-icon">
+                    <i class="fas fa-comment"></i>
+                </div>
+                <h3>Feedback System</h3>
+                <p>Full CRUD feedback system with user relationships. Users can create, view, and manage their feedback.</p>
+                <div class="featured-tech">
+                    <span>Python</span>
+                    <span>Flask</span>
+                    <span>SQLAlchemy</span>
+                    <span>HTML/CSS</span>
+                </div>
+                <a href="{{ url_for('feedback') }}" class="featured-link">Try it out →</a>
+            </div>
+
+            <!-- Project 3 - REST API (YOURS) -->
+            <div class="featured-card">
+                <div class="featured-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>REST API</h3>
+                <p>JSON endpoints for feedback system. Built with Flask and designed for easy integration.</p>
+                <div class="featured-tech">
+                    <span>Python</span>
+                    <span>Flask</span>
+                    <span>REST</span>
+                    <span>JSON</span>
+                </div>
+                <a href="/api/feedback" class="featured-link" target="_blank">View API →</a>
+            </div>
+        </div>
+        
+        <div class="section-footer">
+            <a href="{{ url_for('projects') }}" class="btn-outline">
+                View All Projects <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- Tech Stack Section -->
+<section class="tech-stack-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">⚡ TECH STACK</span>
+            <h2 class="section-title">What I Use</h2>
+            <p class="section-description">Tools I actually work with</p>
+        </div>
+
+        <div class="tech-grid">
+            <div class="tech-item">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-flask"></i>
+                <span>Flask</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-bolt"></i>
+                <span>FastAPI</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-database"></i>
+                <span>SQL</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-docker"></i>
+                <span>Docker</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-git-alt"></i>
+                <span>Git</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Current Focus Section -->
+<section class="focus-section">
+    <div class="container">
+        <div class="focus-grid">
+            <div class="focus-content">
+                <span class="focus-badge">🔨 NOW BUILDING</span>
+                <h2 class="focus-title">Currently working on</h2>
+                <div class="focus-project">
+                    <h3>FastAPI Dashboard</h3>
+                    <p>Admin dashboard with real-time metrics, user management, and API analytics. Building with FastAPI, HTMX, and Tailwind.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%"></div>
+                    </div>
+                    <span class="progress-text">65% done</span>
+                </div>
+                
+                <div class="learning-section">
+                    <h4>Learning</h4>
+                    <div class="learning-tags">
+                        <span>Docker</span>
+                        <span>Kubernetes</span>
+                        <span>GraphQL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="focus-card">
+                <div class="quote-card">
+                    <i class="fas fa-quote-right"></i>
+                    <p>"High school kid? More like high output kid."</p>
+                    <span>- Someone on Twitter</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GitHub Activity Section -->
+<section class="github-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">🐙 GITHUB</span>
+            <h2 class="section-title">Latest Activity</h2>
+            <p class="section-description">My recent public repos</p>
+        </div>
+
+        <div class="github-grid">
+            <!-- This will be dynamic if you add GitHub API later -->
+            <div class="github-card">
+                <div class="github-repo">
+                    <i class="fas fa-code-branch"></i>
+                    <span>alok-uchiha/flask-auth-system</span>
+                </div>
+                <p class="github-desc">Complete authentication with Flask, SQLAlchemy, and WTForms</p>
+                <span class="github-date">Updated just now</span>
+            </div>
+            
+            <div class="github-card">
+                <div class="github-repo">
+                    <i class="fas fa-code-branch"></i>
+                    <span>alok-uchiha/portfolio</span>
+                </div>
+                <p class="github-desc">My personal portfolio site built with Flask</p>
+                <span class="github-date">Updated today</span>
+            </div>
+            
+            <div class="github-card">
+                <div class="github-repo">
+                    <i class="fas fa-code-branch"></i>
+                    <span>alok-uchiha/feedback-api</span>
+                </div>
+                <p class="github-desc">REST API for feedback system with JSON endpoints</p>
+                <span class="github-date">Updated yesterday</span>
+            </div>
+        </div>
+        
+        <div class="section-footer">
+            <a href="https://github.com/alok-uchiha" target="_blank" class="btn-outline">
+                <i class="fab fa-github"></i>
+                View All on GitHub
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section (hawabazi) -->
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">🗣️ WHAT PEOPLE SAY</span>
+            <h2 class="section-title">Kind Words</h2>
+            <p class="section-description">Totally real testimonials (trust me)</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"Alok's code is cleaner than my room. And my room is pretty clean."</p>
+                <div class="testimonial-author">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <strong>Random Dev on Twitter</strong>
+                        <span>@randomdev</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p>"Hired him for a project. He delivered early. Now I'm suspicious."</p>
+                <div class="testimonial-author">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <strong>Some Client</strong>
+                        <span>Probably real</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p>"This kid is 17? I need to rethink my life choices."</p>
+                <div class="testimonial-author">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <strong>Senior Dev</strong>
+                        <span>Feeling insecure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <div class="contact-card">
+            <h2>Let's Build Something</h2>
+            <p>Got a project? Want to collaborate? Just wanna say hi?</p>
+            <div class="contact-links">
+                <a href="https://github.com/alok-uchiha" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/alok-singh-b78a55385/" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://instagram.com/_aroku" target="_blank" class="contact-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="mailto:alok21909@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+                <a href="#" class="contact-link" onclick="alert('Discord: alok_d_uchiha'); return false;">
+                    <i class="fab fa-discord"></i>
+                    <span>Discord</span>
+                </a>
+            </div>
+            <p style="margin-top: var(--space-lg); color: rgba(255,255,255,0.8);">
+                <i class="fas fa-briefcase"></i> Open to work & freelance opportunities
+            </p>
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}About | Alok Singh{% endblock %}
+
+{% block content %}
+<section class="about-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">👋 ABOUT</span>
+            <h1 class="section-title">Who I Am</h1>
+            <p class="section-description">High school kid who loves building things with code</p>
+        </div>
+
+        <div class="about-content" style="max-width: 800px; margin: 0 auto;">
+            <h2>Hey, I'm Alok 👋</h2>
+            <p>
+                I'm a 17-year-old backend developer from India. I've been coding for about 2 years now, 
+                and I'm obsessed with building things that actually work. Python is my main language, 
+                but I've dabbled in JavaScript, SQL, and a bit of DevOps.
+            </p>
+            <p>
+                I started coding because I wanted to build my own tools and games. Now I'm focused on 
+                backend development, APIs, and systems that scale. I'm currently learning FastAPI and Docker.
+            </p>
+            
+            <div class="skills-section">
+                <h3>What I Work With</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Flask</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">FastAPI</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">SQL</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Links Section -->
+            <div class="social-section" style="margin-top: var(--space-2xl); text-align: center;">
+                <h3 style="margin-bottom: var(--space-lg);">Connect with me</h3>
+                <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+                    <a href="https://github.com/alok-uchiha" target="_blank" class="social-link" style="font-size: 2rem;">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/alok-singh-b78a55385/" target="_blank" class="social-link" style="font-size: 2rem;">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://instagram.com/_aroku" target="_blank" class="social-link" style="font-size: 2rem;">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" style="font-size: 2rem;" onclick="alert('Discord: alok_d_uchiha'); return false;">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="mailto:alok21909@gmail.com" class="social-link" style="font-size: 2rem;">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p style="margin-top: var(--space-lg); color: var(--accent-primary); font-size: 1.1rem;">
+                    <i class="fas fa-briefcase"></i> Open to work & freelance opportunities
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,19 +1,71 @@
 {% extends "base.html" %}
-{% block title %}Login{% endblock %}
+
+{% block title %}Login | Alok Singh{% endblock %}
+
 {% block content %}
-<div>
-    <h2>Login</h2>
-    <form action="{{url_for('login')}}" method="POST">
-        {{form.hidden_tag()}}
-        <div>
-            {{form.email.label}}
-            {{form.email}}
+<section class="auth-section">
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-icon">
+                <i class="fas fa-key"></i>
+            </div>
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-subtitle">Login to continue your journey</p>
         </div>
-        <div>
-            {{form.password.label}}
-            {{form.password}}
+
+        <form method="POST" action="{{ url_for('login') }}" class="auth-form">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="fas fa-envelope"></i>
+                    Email Address
+                </label>
+                {{ form.email(class="form-input", placeholder="you@example.com") }}
+                {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                        <div class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="fas fa-lock"></i>
+                    Password
+                </label>
+                {{ form.password(class="form-input", placeholder="••••••••") }}
+                {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                        <div class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="form-checkbox">
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember me</label>
+            </div>
+
+            <button type="submit" class="btn-primary">
+                <i class="fas fa-sign-in-alt"></i>
+                Login
+            </button>
+        </form>
+
+        <div class="form-footer">
+            <p>Don't have an account?</p>
+            <a href="{{ url_for('register') }}" class="btn-outline">
+                <i class="fas fa-user-plus"></i>
+                Create Account
+            </a>
         </div>
-        {{form.submit}}
-    </form>
-</div>
+    </div>
+</section>
 {% endblock %}
