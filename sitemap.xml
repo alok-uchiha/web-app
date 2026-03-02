@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://yourproject.vercel.app/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://yourproject.vercel.app/about</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://yourproject.vercel.app/contact</loc>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://yourproject.vercel.app/login</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://yourproject.vercel.app/register</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://yourproject.vercel.app/projects</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://yourproject.vercel.app/feedback</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://yourproject.vercel.app/404</loc>
+    <priority>0.80</priority>
+  </url>
+
+</urlset>
