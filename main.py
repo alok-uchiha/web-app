@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect, url_for, jsonify, request
+from flask import Flask, render_template, flash, redirect, url_for, jsonify, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from flask_bcrypt import Bcrypt
@@ -134,6 +134,14 @@ def services():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('.', 'sitemap.xml')
+
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory('.', 'robots.txt')
 
 @app.errorhandler(404)
 def not_found_error(error):
