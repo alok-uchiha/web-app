@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField,TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 
@@ -48,4 +48,17 @@ class FeedbackForm(FlaskForm):
     )
     submit= SubmitField(
         "submit"
+    )
+
+class NotesForm(FlaskForm):
+    title = StringField(
+        "title",
+        validators=[DataRequired(), Length(max=200)]
+    )
+    content=TextAreaField(
+        "content",
+        validators=[DataRequired()]
+    )
+    submit=SubmitField(
+        "save note"
     )

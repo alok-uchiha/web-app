@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}New Writing | The Sanctuary{% endblock %}
+
+{% block content %}
+<section class="writing-section">
+    <div class="writing-container">
+        <!-- Ambient background elements -->
+        <div class="ambient-orbe orbe-1"></div>
+        <div class="ambient-orbe orbe-2"></div>
+        <div class="ambient-lines"></div>
+        
+        <!-- Main writing card -->
+        <div class="writing-card">
+            <!-- Decorative header -->
+            <div class="writing-header">
+                <div class="header-ornament left"></div>
+                <div class="header-content">
+                    <span class="writing-badge">✍️ NEW ENTRY</span>
+                    <h1 class="writing-title">The Blank Page</h1>
+                    <p class="writing-subtitle">Where words find their home</p>
+                </div>
+                <div class="header-ornament right"></div>
+            </div>
+
+            <!-- The sacred form -->
+            <form method="POST" action="{{ url_for('add_notes') }}" class="sacred-form">
+                {{ form.hidden_tag() }}
+
+                <!-- Title field - poetic -->
+                <div class="form-group title-group">
+                    <label class="form-label">
+                        <span class="label-icon">📜</span>
+                        <span class="label-text">Give it a name</span>
+                    </label>
+                    <div class="input-wrapper">
+                        {{ form.title(class="title-input", placeholder="e.g., 'Whispers in the Wind', 'Midnight Thoughts'...") }}
+                        <div class="input-glow"></div>
+                    </div>
+                    {% if form.title.errors %}
+                        <div class="form-error">
+                            {% for error in form.title.errors %}
+                                <span>❌ {{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Content field - where magic happens -->
+                <div class="form-group content-group">
+                    <label class="form-label">
+                        <span class="label-icon">🖋️</span>
+                        <span class="label-text">Your words</span>
+                    </label>
+                    <div class="textarea-wrapper">
+                        {{ form.content(class="content-input", placeholder="Once upon a time...", rows="12") }}
+                        <div class="paper-texture"></div>
+                        <div class="writing-stats" id="writingStats">
+                            <span id="wordCount">0 words</span>
+                            <span id="charCount">0 characters</span>
+                            <span id="readingTime">0 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inspiration bar -->
+                <div class="inspiration-bar">
+                    <div class="inspiration-quote" id="randomQuote">
+                        "The first draft is just you telling yourself the story."
+                    </div>
+                    <button type="button" class="quote-refresh" onclick="newQuote()">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+
+                <!-- Action buttons with personality -->
+                <div class="action-bar">
+                    <a href="{{ url_for('notes') }}" class="action-btn cancel-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to library</span>
+                    </a>
+                    
+                    <div class="save-options">
+                        <button type="submit" name="save_draft" class="action-btn draft-btn">
+                            <i class="fas fa-save"></i>
+                            <span>Save Draft</span>
+                        </button>
+                        {{ form.submit(class="action-btn publish-btn", value="Publish to World") }}
+                    </div>
+                </div>
+            </form>
+
+            <!-- Mood selector for writers -->
+            <div class="mood-selector">
+                <span class="mood-label">Writing mood:</span>
+                <div class="mood-options">
+                    <button type="button" class="mood-option" data-mood="romantic">🌹 Romantic</button>
+                    <button type="button" class="mood-option" data-mood="dark">🌑 Dark</button>
+                    <button type="button" class="mood-option" data-mood="dreamy">✨ Dreamy</button>
+                    <button type="button" class="mood-option" data-mood="angry">🔥 Angry</button>
+                    <button type="button" class="mood-option" data-mood="philosophical">🤔 Philosophical</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Writing tips sidebar -->
+        <div class="writing-sidebar">
+            <div class="sidebar-card">
+                <h3>💡 Today's Prompt</h3>
+                <p>Write about a memory that feels like a dream.</p>
+            </div>
+            <div class="sidebar-card">
+                <h3>📖 Your Stats</h3>
+                <div class="stat-item">
+                    <span>Total writings:</span>
+                    <strong>12</strong>
+                </div>
+                <div class="stat-item">
+                    <span>Words written:</span>
+                    <strong>3,456</strong>
+                </div>
+                <div class="stat-item">
+                    <span>Current streak:</span>
+                    <strong>5 days</strong>
+                </div>
+            </div>
+            <div class="sidebar-card">
+                <h3>🎭 Writing Modes</h3>
+                <div class="mode-toggle">
+                    <button class="mode-btn active">Focus</button>
+                    <button class="mode-btn">Typewriter</button>
+                    <button class="mode-btn">Night</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    // Word counter
+    const contentInput = document.querySelector('.content-input');
+    const wordCount = document.getElementById('wordCount');
+    const charCount = document.getElementById('charCount');
+    const readingTime = document.getElementById('readingTime');
+
+    contentInput.addEventListener('input', function() {
+        const text = this.value;
+        const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+        const chars = text.length;
+        const mins = Math.ceil(words / 200); // Average reading speed
+
+        wordCount.textContent = words + ' ' + (words === 1 ? 'word' : 'words');
+        charCount.textContent = chars + ' ' + (chars === 1 ? 'character' : 'characters');
+        readingTime.textContent = mins + ' ' + (mins === 1 ? 'min' : 'mins') + ' read';
+    });
+
+    // Random quotes
+    const quotes = [
+        '"The first draft is just you telling yourself the story."',
+        '"Fill your paper with the breathings of your heart."',
+            '"Write what should not be forgotten."',
+        '"Words are, of course, the most powerful drug used by mankind."',
+        '"A word after a word after a word is power."',
+        '"The story always waits for the right writer to come along."'
+    ];
+
+    function newQuote() {
+        const quoteEl = document.getElementById('randomQuote');
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        quoteEl.style.opacity = '0';
+        setTimeout(() => {
+            quoteEl.textContent = quotes[randomIndex];
+            quoteEl.style.opacity = '1';
+        }, 200);
+    }
+
+    // Mood selector
+    document.querySelectorAll('.mood-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.mood-option').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const mood = this.dataset.mood;
+            document.querySelector('.writing-card').setAttribute('data-mood', mood);
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

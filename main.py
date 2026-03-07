@@ -1,9 +1,10 @@
-from flask import Flask, render_template, flash, redirect, url_for, jsonify, request, send_from_directory, Response
+from flask import Flask, render_template, flash, redirect, url_for, jsonify, request, send_from_directory, Response, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from flask_bcrypt import Bcrypt
-from forms import RegisterForm, LoginForm, FeedbackForm
+from forms import RegisterForm, LoginForm, FeedbackForm, NotesForm
 import os
+from datetime import datetime
 
 #configation
 
@@ -37,6 +38,17 @@ class Feedback(db.Model):
 
     def __repr__(self):
         return f"Feedback('{self.title}', by '{self.user.username}')"
+
+class Notes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    content= db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    user = db.relationship('User', backref='notes')
+
 
 
 @login_manager.user_loader
@@ -146,6 +158,85 @@ def robots():
     response = send_from_directory('.', 'robots.txt')
     response.headers['Content-Type'] = 'text/plain'
     return response
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    user_notes= Notes.query.filter_by(user_id=current_user.id).order_by(Notes.updated_at.desc()).limit(5).all()
+
+    return render_template("dashboard.html", notes=user_notes)
+
+@app.route('/notes')
+@login_required
+def notes():
+    user_notes= Notes.query.filter_by(user_id=current_user.id).all()
+
+    return render_template("dashboard.html", notes=user_notes)
+
+@app.route("/notes/new", methods=["GET","POST"])
+@login_required
+def add_notes():
+    form=NotesForm()
+
+    if form.validate_on_submit():
+        new_notes=Notes(
+            title=form.title.data,
+            content= form.content.data,
+            user_id=current_user.id
+        )
+        db.session.add(new_notes)
+        db.session.commit()
+        flash("Note add successfull", "success")
+        return redirect(url_for('dashboard'))
+    return render_template("add_notes.html", form=form)
+
+
+
+@app.route('/notes/<int:id>')
+@login_required
+def view_notes(id):
+    note = Notes.query.get_or_404(id)
+
+    if note.user_id != current_user.id :
+        abort(403)
+    
+    return render_template("view_note.html", note=note)
+
+
+@app.route("/notes/<int:id>/edit", methods=["GET","POST" ])
+@login_required
+def edit_note(id):
+    note = Notes.query.get_or_404(id)
+
+    if note.user_id != current_user.id :
+        abort(403)
+
+    form = NotesForm()
+
+    if form.validate_on_submit():
+        note.title = form.title.data
+        note.content = form.content.data
+        db.session.commit()
+        flash("note edited successfull", "successfull")
+        return redirect(url_for('dashboard'))
+        
+    form.title.data = note.title
+    form.content.data = note.content
+    return render_template("edit_note.html", form=form, title="Edit Note",note=note)
+        
+        
+@app.route("/notes/<int:note_id>/delete", methods=["POST"])
+@login_required
+def delete_note(note_id):
+    note = Notes.query.get_or_404(note_id)
+    if note.user_id != current_user.id:
+        abort(403)
+    
+    db.session.delete(note)
+    db.session.commit()
+    flash("Note deleted!", "success")
+    return redirect(url_for('notes'))
+
 
 @app.errorhandler(404)
 def not_found_error(error):

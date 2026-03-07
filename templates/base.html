@@ -46,12 +46,18 @@
           </a>
           <a href="/about" class="menu-link">
             <span class="link-text">About</span>
-           
           </a>
           <a href="/blog" class="menu-link">
             <span class="link-text">Blog</span>
-           
           </a>
+          {% if current_user.is_authenticated %}
+            <a href="/dashboard" class="menu-link">
+              <span class="link-text">Dashboard</span>
+            </a>
+            <a href="/notes" class="menu-link">
+              <span class="link-text">Notes</span>
+            </a>
+          {% endif %}
         </div>
 
         <div class="navbar-actions">
@@ -82,9 +88,13 @@
                   </div>
                 </div>
                 <div class="dropdown-divider"></div>
-                <a href="/profile" class="dropdown-item">
-                  <i class="fas fa-user"></i>
-                  <span>Profile</span>
+                <a href="/dashboard" class="dropdown-item">
+                  <i class="fas fa-columns"></i>
+                  <span>Dashboard</span>
+                </a>
+                <a href="/notes" class="dropdown-item">
+                  <i class="fas fa-pen"></i>
+                  <span>My Notes</span>
                 </a>
                 <a href="/feedback" class="dropdown-item">
                   <i class="fas fa-comment"></i>
@@ -163,6 +173,16 @@
           </a>
           
           {% if current_user.is_authenticated %}
+            <a href="/dashboard" class="mobile-nav-link">
+              <span class="link-icon"><i class="fas fa-columns"></i></span>
+              <span class="link-label">Dashboard</span>
+              <span class="link-arrow">→</span>
+            </a>
+            <a href="/notes" class="mobile-nav-link">
+              <span class="link-icon"><i class="fas fa-pen"></i></span>
+              <span class="link-label">Notes</span>
+              <span class="link-arrow">→</span>
+            </a>
             <a href="/feedback" class="mobile-nav-link">
               <span class="link-icon"><i class="fas fa-comment"></i></span>
               <span class="link-label">Feedback</span>
@@ -185,11 +205,11 @@
           {% endif %}
           
           <div class="mobile-social">
-    <a href="https://github.com/alok-uchiha" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/alok-singh-b78a55385/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
-    <a href="https://instagram.com/_aroku" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-    <a href="mailto:alok21909@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-</div>
+            <a href="https://github.com/alok-uchiha" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/alok-singh-b78a55385/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            <a href="https://instagram.com/_aroku" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:alok21909@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -215,8 +235,7 @@
   </main>
 
   <!-- Footer -->
-  <!-- Footer -->
-<footer class="footer">
+  <footer class="footer">
     <div class="footer-container">
         <div class="footer-info">
             <p>© 2026 Alok Singh</p>
@@ -229,7 +248,7 @@
             <a href="mailto:alok21909@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
         </div>
     </div>
-</footer>
+  </footer>
 
   <!-- JS -->
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
